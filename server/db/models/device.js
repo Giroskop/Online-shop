@@ -1,10 +1,7 @@
 const { model, Schema, Types } = require('mongoose')
 
 const deviceSchema = new Schema({
-	name: {
-		type: String,
-		unique: true,
-	},
+	name: String,
 	price: Number,
 	rating: {
 		type: Number,
@@ -19,7 +16,7 @@ const deviceSchema = new Schema({
 		type: Types.ObjectId,
 		ref: 'brand',
 	},
-  deviceInfo: [{
+  info: [{
     type: Types.ObjectId,
     ref: 'deviceInfo'
   }]

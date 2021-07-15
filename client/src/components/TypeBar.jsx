@@ -12,13 +12,17 @@ export default observer(function TypeBar() {
 				{device.types.map(type => {
 					return (
 						<ListGroup.Item
-							key={type.id}
-							id={type.id}
-              active={type.id === device.selectedType.id}
-							onClick={() => device.setSelectedType(type)}
-              style={{cursor: 'pointer'}}
+							key={type._id}
+							id={type._id}
+							active={type._id === device.selectedType._id}
+							onClick={() =>
+								device.selectedType._id === type._id
+									? device.setSelectedType({ type })
+									: device.setSelectedType(type)
+							}
+							style={{ cursor: 'pointer' }}
 						>
-							{type.name}
+							{type.name}66
 						</ListGroup.Item>
 					)
 				})}

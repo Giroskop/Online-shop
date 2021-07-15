@@ -5,12 +5,11 @@ import { authRoutes, publicRoutes } from '../routes'
 
 export default function AppRouter() {
 	
-  // const {user} = useContext(Context)
-  // console.log(user)
+  const {user} = useContext(Context)
 
 	return (
 		<Switch>
-			{false === true &&
+			{user.isAuth === true &&
 				authRoutes.map(({ path, Component }) => {
 					return <Route key={path} path={path} component={Component} exact />
 				})}

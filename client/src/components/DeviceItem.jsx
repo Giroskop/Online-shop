@@ -13,8 +13,8 @@ export default observer(function DeviceItem({ device }) {
 
 	return (
 		<Col md={3} className='mt-3'>
-			<Card border={'light'} style={{ width: '150px', cursor: 'pointer' }} onClick={() => history.push(`${DEVICE_ROUTE}/${device.id}`)}>
-				<Image width='150px' height='150px' src={device.img} />
+			<Card border={'light'} style={{ width: '150px', cursor: 'pointer' }} onClick={() => history.push(`${DEVICE_ROUTE}/${device._id}`)}>
+				<Image width='150px' height='150px' src={process.env.REACT_APP_BASE_URL + device.img} />
 				<div className='d-flex justify-content-between text-black-50 mt-1'>
 					<div>{device.name}</div>
 					<div className='d-flex align-items-center'>

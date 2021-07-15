@@ -1,5 +1,4 @@
 import Container from 'react-bootstrap/esm/Container'
-import Form from 'react-bootstrap/esm/Form'
 import Card from 'react-bootstrap/esm/Card'
 import Button from 'react-bootstrap/esm/Button'
 import Row from 'react-bootstrap/esm/Row'
@@ -7,28 +6,25 @@ import Col from 'react-bootstrap/esm/Col'
 import Image from 'react-bootstrap/esm/Image'
 
 import star from '../assets/img/rating.svg'
+import { useEffect, useState } from 'react'
+import {useParams} from 'react-router-dom'
+import { getOneDevice } from '../http/deviceAPI'
 
 export default function DevicePage() {
-	const device = {
-		id: 8,
-		name: 'agsadgag',
-		price: 1510,
-		rating: 2,
-		img: 'http://localhost:5000/9b8bae7e-60b2-42e0-8062-c086f19ac7e9.jpg',
-	}
 
-	const description = [
-		{ id: 1, title: 'Память', description: 'Много' },
-		{ id: 1, title: 'Материал', description: 'Железо' },
-		{ id: 1, title: 'Срок годности', description: '24мес.' },
-	]
+  const [device, setDevice] = useState({info: []})
+  const {id} = useParams()
+
+  useEffect( () => {
+    getOneDevice(id).then(data => setDevice(data))
+  }, [])
 
 	return (
 		<>
-			<Container className=''>
+			<Container className='mt-3'>
 				<Row>
 					<Col md={4}>
-						<Image width='300px' height='300px' src={device.img} />
+						<Image width='300px' height='300px' src={process.env.REACT_APP_BASE_URL + device.img} alt='фото продукта'/>
 					</Col>
 					<Col md={4}>
 						<Row className='d-flex flex-column align-items-center'>
@@ -78,7 +74,7 @@ export default function DevicePage() {
 				</Row>
 				<Row className='d-flex flex-column m-3'>
           <h1>Характеристики</h1>
-					{description.map(info => {
+					{device?.info?.map(info => {
 						return (
 							<Row
 								key={info.id}

@@ -17,8 +17,8 @@ export default observer(function DeviceList() {
 
   return (
     <Row className="d-flex">
-      {device.devices.map(device => {
-        return <DeviceItem key={device.id} id={device.id} device={device}/>
+      {device?.devices?.map(device => {
+        return <DeviceItem key={device._id} id={device._id} device={device}/>
       })}
     </Row>
   )

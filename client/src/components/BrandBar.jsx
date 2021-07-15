@@ -8,19 +8,35 @@ import Card from 'react-bootstrap/esm/Card'
 
 export default observer(function BrandBar() {
 	const { device } = useContext(Context)
+
+	// function selectBrand(e) {
+	//   if (e.target.id === brand._id) {
+	//     device.setSelectedBrand({})
+	//   } else {
+	//     device.setSelectedBrand(brand)
+	//   }
+	// }
+
 	return (
 		<>
 			<Row className='d-flex'>
 				{device.brands.map(brand => {
 					return (
 						<Card
-							key={brand.id}
-							id={brand.id}
-							onClick={() => device.setSelectedBrand(brand)}
-							border={brand.id === device.selectedBrand.id ? 'primary' : 'light'}
+							key={brand._id}
+							id={brand._id}
+							onClick={() =>
+								device.selectedBrand._id === brand._id
+									? device.setSelectedBrand({})
+									: device.setSelectedBrand(brand)
+							}
+							border={
+								brand._id === device.selectedBrand._id ? 'primary' : 'light'
+							}
 							className='p-3'
 							style={{ cursor: 'pointer' }}
 						>
+							{device.selectedBrand.id}
 							{brand.name}
 						</Card>
 					)
